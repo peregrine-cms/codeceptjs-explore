@@ -28,7 +28,10 @@ $ docker run --net=host -v $PWD:/tests codeception/codeceptjs
 
 ## Record Tests with Docker
 
-TODO
+```
+$ ./docker-record.sh
+```
+
 
 ## How This Project Was Created
 
