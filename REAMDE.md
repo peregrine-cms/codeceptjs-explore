@@ -37,7 +37,7 @@ This project was bootstrapped using the following instructions.
 1. Create a workspace.
 
 ```
-$ mkdir conceptjs && cd conceptjs
+$ mkdir codeceptjs-explore && cd codeceptjs-explore
 ```
 
 2. Install CodeceptJS and Puppeteer.
