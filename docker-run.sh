@@ -8,4 +8,4 @@
 docker run --net=host \
 	-v $PWD:/tests \
         -w /tests \
-	codeception/codeceptjs
+	 peregrinecms/e2e-tests:latest
