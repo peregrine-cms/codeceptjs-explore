@@ -10,4 +10,9 @@ docker run --net=host \
         -w /tests \
 	codeception/codeceptjs
 
-#  lsoft.com/headless sh -c 'npm run clean && mkdir -p output; xvfb-run -s \":99 -auth /tmp/xvfb.auth -ac -screen 0 1920x1080x24\" ffmpeg -y -f x11grab -video_size 1920x1080 -i :99 -codec:v libx264 -pix_fmt yuv420p  -draw_mouse 0 -r 12 -loglevel panic output/video.mp4& DISPLAY=:99 npm test; killall ffmpeg; sleep 5'
+#
+# https://github.com/codecept-js/CodeceptJS/issues/1015
+#
+#docker run -v `pwd`:/tests -w /tests --rm registry.rebelsoft.com/headless sh -c 'npm run clean && mkdir -p output; xvfb-run -s \":99 -auth /tmp/xvfb.auth -ac -screen 0 1920x1080x24\" ffmpeg -y -f x11grab -video_size 1920x1080 -i :99 -codec:v libx264 -pix_fmt yuv420p  -draw_mouse 0 -r 12 -loglevel panic output/video.mp4& DISPLAY=:99 npm test; killall ffmpeg; sleep 5'
+
+
