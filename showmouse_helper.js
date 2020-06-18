@@ -1,37 +1,37 @@
-const { Helper } = codeceptjs;
+const {Helper} = codeceptjs;
 
 class ShowMouse extends Helper {
 
-  // before/after hooks
-  /**
-   * @protected
-   */
-  _before() {
-    // remove if not used
-  }
+    // before/after hooks
+    /**
+     * @protected
+     */
+    _before() {
+        // remove if not used
+    }
 
-  /**
-   * @protected
-   */
-  _after() {
-    // remove if not used
-  }
+    /**
+     * @protected
+     */
+    _after() {
+        // remove if not used
+    }
 
-  // add custom methods here
-  // If you need to access other helpers
-  // use: this.helpers['helperName']
+    // add custom methods here
+    // If you need to access other helpers
+    // use: this.helpers['helperName']
 
-  async showCursor() {
-    const { page } = this.helpers.Puppeteer;
+    async showCursor() {
+        const {page} = this.helpers.Puppeteer;
 
-  await page.evaluateOnNewDocument(() => {
-    // Install mouse helper only for top-level frame.
-    if (window !== window.parent)
-      return;
-    window.addEventListener('DOMContentLoaded', () => {
-      const box = document.createElement('puppeteer-mouse-pointer');
-      const styleElement = document.createElement('style');
-      styleElement.innerHTML = `
+        await page.evaluateOnNewDocument(() => {
+            // Install mouse helper only for top-level frame.
+            if (window !== window.parent)
+                return;
+            window.addEventListener('DOMContentLoaded', () => {
+                const box = document.createElement('puppeteer-mouse-pointer');
+                const styleElement = document.createElement('style');
+                styleElement.innerHTML = `
         puppeteer-mouse-pointer {
           pointer-events: none;
           position: absolute;
@@ -68,29 +68,30 @@ class ShowMouse extends Helper {
           border-color: rgba(0,255,0,0.9);
         }
       `;
-      document.head.appendChild(styleElement);
-      document.body.appendChild(box);
-      document.addEventListener('mousemove', event => {
-        box.style.left = event.pageX + 'px';
-        box.style.top = event.pageY + 'px';
-        updateButtons(event.buttons);
-      }, true);
-      document.addEventListener('mousedown', event => {
-        updateButtons(event.buttons);
-        box.classList.add('button-' + event.which);
-      }, true);
-      document.addEventListener('mouseup', event => {
-        updateButtons(event.buttons);
-        box.classList.remove('button-' + event.which);
-      }, true);
-      function updateButtons(buttons) {
-        for (let i = 0; i < 5; i++)
-          box.classList.toggle('button-' + i, buttons & (1 << i));
-      }
-    }, false);
-  });
+                document.head.appendChild(styleElement);
+                document.body.appendChild(box);
+                document.addEventListener('mousemove', event => {
+                    box.style.left = event.pageX + 'px';
+                    box.style.top = event.pageY + 'px';
+                    updateButtons(event.buttons);
+                }, true);
+                document.addEventListener('mousedown', event => {
+                    updateButtons(event.buttons);
+                    box.classList.add('button-' + event.which);
+                }, true);
+                document.addEventListener('mouseup', event => {
+                    updateButtons(event.buttons);
+                    box.classList.remove('button-' + event.which);
+                }, true);
 
-  }
+                function updateButtons(buttons) {
+                    for (let i = 0; i < 5; i++)
+                        box.classList.toggle('button-' + i, buttons & (1 << i));
+                }
+            }, false);
+        });
+
+    }
 
 }
 
