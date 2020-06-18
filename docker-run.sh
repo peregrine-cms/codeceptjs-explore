@@ -1,17 +1,13 @@
 #!/bin/bash
-#
-# docker run [options]
-# -v, --volume list       Bind mount a volume
-# -w, --workdir string    Working directory inside the container
-#     --rm                Automatically remove the container when it exits
 
-# NOTE: Removing the node_modules directory is CRITICAL since the host system is sharing
-#       the workspace with the container. There will be module conflicts if we don't do this.
-
-rm -rf node_modules
+# Since we are mounting our workspace and sharing it with Docker, we need to
+# make sure that we remove the node_modules to ensure there are no Node conflicts
+# between tests running on the local host and those running on the Docker container.
+if [ -e `pwd`/node_modules ]; then
+  rm -rf `pwd`/node_modules
+fi
 
 docker run --net=host \
-        -it \
 	-v $PWD:/tests \
         -w /tests \
 	peregrinecms/e2e-tests:latest \
