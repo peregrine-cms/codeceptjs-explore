@@ -29,7 +29,8 @@ $ docker run --net=host -v $PWD:/tests codeception/codeceptjs
 ## Record Tests with Docker
 
 ```
-$ ./docker-record.sh
+$ ./docker-build.sh
+$ ./docker-run.sh
 ```
 
 
