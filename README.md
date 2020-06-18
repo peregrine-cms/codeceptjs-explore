@@ -15,11 +15,14 @@ Goals:
 
 1. Run tests on your machine.
 
-**NOTE:** If you plan to run this locally and use Docker, you will need to delete your
-`node_modules` directory when switching back and fourth.
+```
+$ ./local-run.sh
+```
+
+or
 
 ```
-$ npx codeceptjs run --steps
+$ npm run test
 ```
 
 ## Record Tests with Docker

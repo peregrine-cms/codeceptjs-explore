@@ -11,11 +11,16 @@ exports.config = {
     Puppeteer: {
       url: 'http://localhost:8080',
       show: true,
-      windowSize: '1200x900',
+      windowSize: '1920x1080',
+      waitForAction: 2000,
       chrome: {
-        args: ['--no-sandbox']
+//      args: ['--no-sandbox', '--window-size=1920,1080', '--auto-open-devtools-for-tabs'],
+        args: ['--no-sandbox', '--window-size=1920,1080'],
       }
-    }
+    },
+    ShowMouse: {
+      require: './showmouse_helper.js',
+    },
   },
   include: {
     I: './steps_file.js'
