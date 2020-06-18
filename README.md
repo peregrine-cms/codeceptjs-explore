@@ -28,9 +28,22 @@ $ docker run --net=host -v $PWD:/tests codeception/codeceptjs
 
 ## Record Tests with Docker
 
+1. Build the Docker image (or pull it from DockerHub).
+
 ```
 $ ./docker-build.sh
+```
+
+2. Run the tests and capture video.
+
+```
 $ ./docker-run.sh
+```
+
+or
+
+```
+$ npm run docker-test
 ```
 
 
