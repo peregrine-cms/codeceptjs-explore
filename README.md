@@ -19,13 +19,6 @@ Goals:
 $ npx codeceptjs run --steps
 ```
 
-
-2. Run tests with Docker.
-
-```
-$ docker run --net=host -v $PWD:/tests codeception/codeceptjs
-```
-
 ## Record Tests with Docker
 
 1. Build the Docker image (or pull it from DockerHub).
