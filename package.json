@@ -1,16 +1,19 @@
 {
-  "name": "conceptjs",
+  "name": "codeceptjs-explore",
   "version": "1.0.0",
-  "description": "",
+  "description": "An experimental testing framework for Peregrine-CMS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker-test": "docker run -v `pwd`:/tests -w /tests --rm registry.rebelsoft.com/headless sh -c 'rm -rf node_modules && npm i --save-dev && mkdir -p output; xvfb-run -s \":99 -auth /tmp/xvfb.auth -ac -screen 0 1920x1080x24\" ffmpeg -y -f x11grab -video_size 1920x1080 -i :99 -codec:v libx264 -pix_fmt yuv420p  -draw_mouse 0 -r 12 -loglevel panic output/video.mp4& DISPLAY=:99 npx codeceptjs run --steps; killall ffmpeg; sleep 5'"
-   
+    "docker-test": "docker run --net=host -v `pwd`:/tests -w /tests --rm peregrinecms/e2e-tests sh -c 'rm -rf node_modules && npm i --save-dev && mkdir -p output; xvfb-run -s \":99 -auth /tmp/xvfb.auth -ac -screen 0 1920x1080x24\" ffmpeg -y -f x11grab -video_size 1920x1080 -i :99 -codec:v libx264 -pix_fmt yuv420p  -draw_mouse 0 -r 12 -loglevel panic output/video.mp4& DISPLAY=:99 npx codeceptjs run --steps; killall ffmpeg; sleep 5'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "headwire",
+    "peregrine-cms",
+    "codeceptjs"
+  ],
+  "author": "Gaston Gonzalez",
+  "license": "Apache2",
   "devDependencies": {
     "codeceptjs": "^2.6.5",
     "puppeteer": "^4.0.0"
