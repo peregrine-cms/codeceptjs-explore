@@ -4,7 +4,6 @@ const fs = require('fs');
 const logProxy = console.log
 const startTime = Date.now()  
 const offset = 5 // seconds. ffmpeg starts way before us
-
 var textFragmentNum = 1
 
 fs.truncate('cc.srt', 0, function (err) {});
@@ -31,7 +30,6 @@ console.log = function() {
   
 }
 
-
 // turn on headless mode when running with HEADLESS=true environment variable
 // HEADLESS=true npx codecept run
 setHeadlessWhen(process.env.HEADLESS);
@@ -44,7 +42,7 @@ exports.config = {
       url: 'http://localhost:8080',
       show: true,
       windowSize: '1920x1080',
-      waitForAction: 2000,
+      waitForAction: 1000,
       chrome: {
 //      args: ['--no-sandbox', '--window-size=1920,1080', '--auto-open-devtools-for-tabs'],
         args: ['--no-sandbox', '--window-size=1920,1080'],
