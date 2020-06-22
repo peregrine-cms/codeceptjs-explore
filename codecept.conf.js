@@ -47,6 +47,9 @@ exports.config = {
       show: true,
       windowSize: '1920x1080',
       waitForAction: 1000,
+      restart: false,
+      keepBrowserState: true,
+      keepCookies: true,
       chrome: {
 //      args: ['--no-sandbox', '--window-size=1920,1080', '--auto-open-devtools-for-tabs'],
         args: ['--no-sandbox', '--window-size=1920,1080'],
