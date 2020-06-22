@@ -11,4 +11,4 @@ fi
 ln -s node_modules.local node_modules
 
 npm i
-npx codeceptjs run --steps
+NO_VIDEO_CC=1 npx codeceptjs run --steps
