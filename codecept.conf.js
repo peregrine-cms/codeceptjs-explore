@@ -58,6 +58,9 @@ exports.config = {
     ShowMouse: {
       require: './showmouse_helper.js',
     },
+    AssertWrapper : {
+      require: 'codeceptjs-assert',
+    },
   },
   include: {
     I: './steps_file.js'

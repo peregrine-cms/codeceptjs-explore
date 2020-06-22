@@ -16,6 +16,7 @@
   "license": "Apache2",
   "devDependencies": {
     "codeceptjs": "^2.6.5",
+    "codeceptjs-assert": "0.0.4",
     "puppeteer": "^4.0.0"
   }
 }
