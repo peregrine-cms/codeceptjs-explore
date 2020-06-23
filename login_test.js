@@ -22,18 +22,16 @@ Scenario('Navigate to site', async (I) => {
   I.click('Next')
   // This is not a real form. Can't use fillField()
   // I.fillField('title', 'Test Site')
-  I.fillField(locate('input[id=title]'), 'Test Site')
+  I.fillField(locate('input[id=title]'), 'Test Page')
   let siteName = await I.grabValueFrom('#name')
-  I.assert(siteName, 'test-site')
+  I.assert(siteName, 'test-page')
   I.click('Next')
   I.click('Finish and Edit!')
 
+  // TODO: Refactor into 'component X' scenario.
+  //I.seeElement(locate('li').find('span').withText('Text - Heading 2'));
   //pause()
 })
-
-//Scenario('Add page', (I) => {
-//})
-
 
 
 

@@ -10,6 +10,8 @@ fi
 
 ln -s node_modules.docker node_modules
 
+rm -f cc.srt && touch cc.srt
+
 # Notes:
 # sleep 5 - Needed for ffmpeg process to be stopped and output stream to be flushed.
 
@@ -18,3 +20,4 @@ docker run --net=host \
         -w /tests \
 	peregrinecms/e2e-tests:latest \
         sh -c 'npm i && mkdir -p output; xvfb-run -s ":99 -auth /tmp/xvfb.auth -ac -screen 0 1920x1080x24" ffmpeg -y -f x11grab -video_size 1920x1080 -i :99 -codec:v libx264 -pix_fmt yuv420p -r 12 -loglevel panic output/video.mp4& DISPLAY=:99  npx codeceptjs run --steps; killall ffmpeg; sleep 5; ./cc.sh'
+
