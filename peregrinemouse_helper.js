@@ -8,9 +8,13 @@ class PeregrineMouse extends Helper {
        this.runCmd('xdotool getactivewindow')
     }
 
+    async getMouseLocation() {
+        this.runCmdAsync('xdotool getmouselocation --shell')
+    }
+
     async moveMouse(x, y) {
-        this.runCmd(`xdotool mousemove --sync ${x} ${y}`)
-        this.runCmd('xdotool getmouselocation --shell')
+        this.runCmd(`xdotool mousemove --sync ${x} ${y} && sleep 1`)
+        this.runCmdAsync('xdotool getmouselocation --shell')
     }
 
     async mouseDown() {
@@ -26,6 +30,23 @@ class PeregrineMouse extends Helper {
     async runCmd(cmd) {
         if (process.env.NO_VIDEO_CC == 1) {
             childProcess.execSync(cmd, (error, stdout, stderr) => {
+                if (error) {
+                    console.log(`error: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.log(`stderr: ${stderr}`);
+                    return;
+                }
+                console.log(`stdout: ${stdout}`);
+            })
+        }
+    }
+
+    // Use this version if you need output
+    async runCmdAsync(cmd) {
+        if (process.env.NO_VIDEO_CC == 1) {
+            childProcess.exec(cmd, (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
                     return;
@@ -65,6 +86,26 @@ class PeregrineMouse extends Helper {
         await page.mouse.up()
         await this.mouseUp()
     }
+
+    async nativeDragAndDrop(x1, y1, x2, y2) {
+        this.moveMouse(x1,y1)
+        this.mouseDown()
+        this.moveMouse(x2,y2)
+        this.mouseUp()
+    }
+
+    /*
+    async nativeDragAndDrop(srcSel, x2, y2) {
+        const {page} = this.helpers.Puppeteer
+
+        const source = await page.$(sel)
+        const sourceBox = await source.boundingBox()
+
+        const srcX = sourceBox.x + sourceBox.width / 2
+        const srcY = (sourceBox.y + sourceBox.height / 2) + windowOffsetY
+        this.nativeDragAndDrop(srcX, srcY, x2, y2)
+    }
+     */
 }
 
 module.exports = PeregrineMouse;

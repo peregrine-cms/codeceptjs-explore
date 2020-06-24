@@ -16,6 +16,7 @@ Scenario('Navigate to site', async (I) => {
   I.click(locate('div').find('span').withText('ThemecleanFlex Site').as('ThemecleanFlex Site'))
   I.click(locate('div').find('p').withText('edit and manage the pages').as('Pages'))
 
+  /*
   // TODO: Refactor into 'add page' scenario. Need to resolve issue with BeforeSuite
   I.click(locate('a').withAttr({ title: 'add page' }).as('add page'))
   I.click(locate('a').withAttr({ title: 'base page' }).as('base page template'))
@@ -27,9 +28,20 @@ Scenario('Navigate to site', async (I) => {
   I.assert(siteName, 'test-page')
   I.click('Next')
   I.click('Finish and Edit!')
+  */
 
-  // TODO: Refactor into 'component X' scenario.
-  //I.seeElement(locate('li').find('span').withText('Text - Heading 2'));
+  I.click(locate('a').withAttr({ title: "edit 'index'" }).as('index'))
+  I.seeElement(locate('li').find('span').withText('Breadcrumb'))
+  I.nativeDragAndDrop(1820,500,910,350)
+  I.nativeDragAndDrop(1820,600,910,350)
+
+  // TODO: Do we need to scroll first
+  //I.nativeDragAndDrop('addselectorlater',910,350)
+
+
+  // RR: I know you don't like the selector. It will be refactored.
+  //I.nativeDragAndDrop('.//li//span[contains(., \'Breadcrumb\')]', "#editable")
+
   //pause()
 })
 
